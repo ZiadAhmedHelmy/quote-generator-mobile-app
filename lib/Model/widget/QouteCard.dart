@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:qoute_app/Model/models/QuoteModel.dart';
 
+import '../../utils/AppColors.dart';
 import '../Components/CustomBtn.dart';
 import '../Components/CustomText.dart';
 class QuoteCard extends StatelessWidget {
-  const QuoteCard({super.key});
+ final QuoteModel quote;
+  const QuoteCard({super.key, required this.quote});
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +19,20 @@ class QuoteCard extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: Column(
         children: [
-          CustomText(text: "“All I required to be happy was friendship and people I could admire.”",fontSize: 24),
+          CustomText(text: quote.content!,fontSize: 24),
           const SizedBox(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomText(text: "Christian Dior" , fontSize: 18,color:Color.fromRGBO(50, 50, 50, 0.7) ,),
+              CustomText(text: quote.author! , fontSize: 18,color:AppColor.purple2 ,),
             ],),
           const SizedBox(height: 15,),
           Row(children: [
             Expanded(
                 flex:2,
-                child: CustomButton(text: "Generate Another Quote",textColor: Colors.white,borderRadius:const BorderRadius.only(bottomLeft: Radius.circular(8)),color: Color.fromRGBO(130, 73, 181, 1), onTap: (){})),
+                child: CustomButton(text: "Generate Another Quote",textColor: Colors.white,borderRadius:const BorderRadius.only(bottomLeft: Radius.circular(8)),color: AppColor.purple2, onTap: (){})),
             const SizedBox(width: 10,),
-            Expanded(child: CustomButton(text: "",icon:Icons.heart_broken,textColor: Colors.white,borderRadius:const BorderRadius.only(bottomRight: Radius.circular(8)),color: Colors.white,borderWidth: 2,borderColor:Color.fromRGBO(130, 73, 181, 1) , onTap: (){})),
+            Expanded(child: CustomButton(text: "",icon:Icons.heart_broken,textColor: Colors.white,borderRadius:const BorderRadius.only(bottomRight: Radius.circular(8)),color: Colors.white,borderWidth: 2,borderColor:AppColor.purple2 , onTap: (){})),
           ],)
         ],
       ),
