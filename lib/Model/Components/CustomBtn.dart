@@ -11,10 +11,11 @@ class CustomButton extends StatelessWidget {
   double? btnHeight;
   double? btnWidth;
   double? borderWidth;
+  double? fontSize;
   BorderRadiusGeometry? borderRadius;
   IconData? icon;
   Color? iconColor;
-  CustomButton({super.key,required this.text , required this.color , required this.onTap , this.borderColor , this.textColor , this.btnHeight , this.borderWidth , this.icon , this.iconColor , this.borderRadius,this.btnWidth});
+  CustomButton({super.key,required this.text , required this.color , required this.onTap , this.borderColor , this.textColor , this.btnHeight , this.borderWidth , this.icon , this.iconColor , this.borderRadius,this.btnWidth , this.fontSize});
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +36,15 @@ class CustomButton extends StatelessWidget {
             child:  Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                if(icon!=null)
+                  Icon(icon , color: iconColor,),
                 Text( text ?? "No Pain No Gain",
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize:fontSize ,
                       color: textColor,
                       fontWeight: FontWeight.w600,
                     )),
-                if(icon!=null)
-                  Icon(icon , color: iconColor,),
+
               ],
             )));
   }
