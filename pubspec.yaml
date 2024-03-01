@@ -40,6 +40,10 @@ dependencies:
   dio: ^5.4.1
   fluentui_system_icons: ^1.1.227
   flutter_screenutil: ^5.9.0
+  toastification: ^1.2.1
+  shared_preferences: ^2.2.2
+  sqflite: ^2.3.2
+  loading_animation_widget: ^1.2.0+4
 
 dev_dependencies:
   flutter_test:

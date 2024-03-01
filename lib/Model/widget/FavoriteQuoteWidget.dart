@@ -1,14 +1,17 @@
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qoute_app/Model/models/QuoteModel.dart';
+import 'package:qoute_app/Model/models/favModel.dart';
 import 'package:qoute_app/ViewModel/Bloc/FavoriteCubit/favorite_cubit.dart';
+import 'package:qoute_app/ViewModel/Data/Local/LocalData.dart';
 
 import '../../utils/AppColors.dart';
 import '../Components/CustomBtn.dart';
 import '../Components/CustomText.dart';
 class FavoriteQuote extends StatelessWidget {
   int Index;
-  final QuoteModel quote;
+  final FavModel quote;
    FavoriteQuote({super.key, required this.quote , required this.Index});
   @override
   Widget build(BuildContext context) {
@@ -22,20 +25,28 @@ class FavoriteQuote extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: Column(
         children: [
-          CustomText(text: '"'"${quote.content}"'"',fontSize: 26),
+          CustomText(text: '"'"${quote.description}"'"',fontSize: 26),
           const SizedBox(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CustomText(text:  quote.author ??"Ziad AHemd" , fontSize: 22,color:AppColor.purple2 ,),
+              CustomText(text:  quote.name ??"Ziad AHemd" , fontSize: 22,color:AppColor.purple2 ,),
             ],),
           const SizedBox(height: 15,),
           Row(children: [
-            Expanded(
+            BlocConsumer<FavoriteCubit, FavoriteState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Expanded(
                 flex:2,
                 child: CustomButton(text: "Remove From Favorite",fontSize:22,icon:FluentIcons.heart_24_regular,textColor: AppColor.purple2,borderRadius:const BorderRadius.vertical(bottom: Radius.circular(6)),color: AppColor.white,borderWidth: 2,borderColor: AppColor.purple2, onTap: (){
-                  favCubit.removeFromFavorites(index: Index);
-                })),
+                  favCubit.changeIndex(Index);
+                  favCubit.deleteFavQuote(FavoriteCubit.get(context).test[favCubit.currentIndex].id!);
+                }));
+  },
+),
             const SizedBox(width: 10,),
           ],)
         ],

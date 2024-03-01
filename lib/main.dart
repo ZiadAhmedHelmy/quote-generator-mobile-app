@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qoute_app/ViewModel/Bloc/FavoriteCubit/favorite_cubit.dart';
 import 'package:qoute_app/ViewModel/Bloc/QuoteCubit/quote_cubit.dart';
+import 'package:qoute_app/ViewModel/Data/Local/LocalData.dart';
 import 'package:qoute_app/ViewModel/Data/Network/DioHelper.dart';
 import 'package:qoute_app/view/HomePage.dart';
 
@@ -11,6 +12,7 @@ import 'ViewModel/Bloc/BlocObserver.dart';
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
+  LocalData.initDb();
   await ScreenUtil.ensureScreenSize();
   Bloc.observer = MyBlocObserver();
 
